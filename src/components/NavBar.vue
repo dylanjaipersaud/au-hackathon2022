@@ -1,18 +1,16 @@
 <template>
-  <div>
+  <div style="position: absolute">
     <v-navigation-drawer app height="100%" color="#3cb371" v-model="drawer">
-      <v-list >
-          <a href="https://www.adelphi.edu">
-        <v-list-item class="nav-logo">
-          
+      <v-list>
+        <a href="https://www.adelphi.edu">
+          <v-list-item class="nav-logo">
             <v-img
               src="../assets/adelphi-logo.png"
               alt="Adelphi University"
               max-width="150"
               contain
             />
-          
-        </v-list-item>
+          </v-list-item>
         </a>
         <div>
           <v-list-item
@@ -33,29 +31,46 @@
             </v-list-item-content>
           </v-list-item>
         </div>
-        <div class="end-items">End</div>
+        <div class="end-items">
+          <v-list-item
+            dense
+            link
+            v-for="item in nav_items_end"
+            :key="item.title"
+            router
+            :to="item.route"
+            class="nav-item"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </div>
       </v-list>
     </v-navigation-drawer>
 
-
     <v-app-bar
-      v-if = "$vuetify.breakpoint.mdAndDown"
+      v-if="$vuetify.breakpoint.mdAndDown"
       app
       color="#3cb371"
       class="hidden-lg-and-up"
       flat
       @click="drawer = !drawer"
     >
-    <v-app-bar-nav-icon class="ml-5"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon class="ml-5"></v-app-bar-nav-icon>
       <div>
-         <a href="https://www.adelphi.edu">
-        <v-img
-          src="../assets/adelphi-logo.png"
-          alt="Adelphi University"
-          class="shrink mr-2"
-          max-width="160"
-          contain
-        />
+        <a href="https://www.adelphi.edu">
+          <v-img
+            src="../assets/adelphi-logo.png"
+            alt="Adelphi University"
+            class="shrink mr-2"
+            max-width="160"
+            contain
+          />
         </a>
       </div>
     </v-app-bar>
@@ -66,7 +81,7 @@
 export default {
   name: "NavBar",
   data: () => ({
-      drawer: false,
+    drawer: false,
     nav_items: [
       {
         title: "Home",
@@ -76,19 +91,36 @@ export default {
       {
         title: "Fourms",
         icon: "mdi-form-select",
-        route: "/",
+        route: "/MainForum",
+      },
+      {
+        title: "Study Cards",
+        icon: "mdi-card-multiple-outline",
+        route: "/MainCards",
       },
       {
         title: "Repository",
         icon: "mdi-application-brackets-outline",
-        route: "/",
+        route: "/MainRepos",
       },
       {
         title: "Explore",
         icon: "mdi-web",
-        route: "/",
+        route: "/MainExplore",
       },
     ],
+    nav_items_end: [
+      {
+        title: "Feedback",
+        icon: "mdi-comment-quote",
+        route: "/",
+      },
+      {
+        title: "Account",
+        icon: "mdi-account-outline",
+        route: "/",
+      },
+    ]
   }),
 };
 </script>
@@ -99,22 +131,22 @@ export default {
   /* display: flex;
     justify-content: right; */
   background-color: #e4e4ef;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  /* border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff; */
   margin-bottom: 30px;
-  box-shadow: 0px 3px 5px #ccc ;
+  box-shadow: 0px 3px 5px #ccc;
 }
 .nav-item {
   width: 100%;
   /* display: flex;
     justify-content: right; */
   background-color: #e4e4ef;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  /* border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff; */
   margin-bottom: 5px;
-  box-shadow: 0px 3px 5px #ccc ;
+  box-shadow: 0px 3px 5px #ccc;
 }
-.end-items{
-    margin-top: 90%;
+.end-items {
+  margin-top: 90%;
 }
 </style>

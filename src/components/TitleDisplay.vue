@@ -1,13 +1,11 @@
+<!---
 <template>
-<v-container>
-    
-</v-container>
+  <canvas id="Canvas"></canvas>
 </template>
 
 <script>
-
 export default {
-  name: "MainForm",
+  name: "TitleDisplay"
 };
 </script>
 
